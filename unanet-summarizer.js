@@ -91,6 +91,15 @@ var docTemplateGeneration = function(hoursByProjectTypeArray, totalPlus, totalNo
     
 };
 
+var addEventListenersThatUpdateSummary = function() {
+    var hoursInputs = document.querySelectorAll('input.hours');
+
+    hoursInputs.forEach(function(textInput){
+        console.log('adding event listener');
+        textInput.addEventListener('input', window.summarizeUnanetTime);
+    });
+}
+
 // Execution 
 window.summarizeUnanetTime = function() { 
     var resultArray = obtainTimeEntryRows();
@@ -114,4 +123,6 @@ window.summarizeUnanetTime = function() {
     else {
         document.querySelector("#unanet-summary").innerHTML = summaryDoc;
     }
+
+    addEventListenersThatUpdateSummary();
 };
